@@ -6,6 +6,8 @@
 #include <Box2D/Common/b2Draw.h>
 #include <Box2D/Dynamics/b2World.h>
 #include <cinder/app/App.h>
+#include <cinder/gl/draw.h>
+#include <cinder/gl/gl.h>
 #include <gflags/gflags.h>
 
 namespace myapp {
@@ -26,6 +28,8 @@ void MyApp::update() { }
 void MyApp::draw() {
 
 
+  cinder::gl::color(1.0f,1.0f,1.0f);
+  cinder::gl::drawSolidRect(cinder::Rectf(.5,.5,.7,.7));
 }
 
 void MyApp::keyDown(KeyEvent event) { }
