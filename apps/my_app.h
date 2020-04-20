@@ -15,6 +15,9 @@ class MyApp : public cinder::app::App {
   void update() override;
   void draw() override;
   void keyDown(cinder::app::KeyEvent) override;
+
+ private:
+  const std::string player_name_;
 };
 
 }  // namespace myapp
