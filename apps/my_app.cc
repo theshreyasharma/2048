@@ -2,9 +2,6 @@
 
 #include "my_app.h"
 
-#include <Box2D/Collision/Shapes/b2PolygonShape.h>
-#include <Box2D/Common/b2Draw.h>
-#include <Box2D/Dynamics/b2World.h>
 #include <cinder/Vector.h>
 #include <cinder/app/App.h>
 #include <cinder/gl/draw.h>

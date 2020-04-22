@@ -14,10 +14,16 @@
     - [x] Set up game board display
 
 - **4/21/20** - Planned graphics setup
-    - Office hours was unable to help me with my cinder issue the last 2 days, so my progress has stalled.
+    - Office hours was unable to help me with my issue the last 2 days, so my progress has stalled.
     - Updated project proposal
     - Created functions for drawing background and gameboard
     - Set up example of Box2D working
-    - [ ] Find out what is causing issue with drawing shapes
+    - [x] Find out what is causing issue with drawing shapes
     - [ ] Create classes and begin game implementation
-    
+
+- **4/22/20** - Set up database, update external library, create database classes
+    - Set up database using sqlite
+    - Remove Box2d from my library and CMake files
+    - [x] Update project proposal and readme with *final* choice of external library (sqlite3)
+    - [ ] Begin drafting Block class
+    - [ ] Decide color palettes for light and dark mode

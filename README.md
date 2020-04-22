@@ -8,8 +8,11 @@ layout.
 
 **Author**: Shreya Sharma - [`ssharm90@illinois.edu`](mailto:ssharm90@illinois.edu)
 
+- The classic 2048 game as a cinder app
+
 - Libraries used: 
     - gflags
+    - sqlite3
 
 
 - Controls:
