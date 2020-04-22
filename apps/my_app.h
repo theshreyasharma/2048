@@ -16,8 +16,14 @@ class MyApp : public cinder::app::App {
   void draw() override;
   void keyDown(cinder::app::KeyEvent) override;
 
+
  private:
   const std::string player_name_;
+  int player_score_;
+  static void PrintText(const std::string& text, const cinder::ivec2& size,
+                        const cinder::vec2& loc);
+  void DrawBackground() const;
+  void DrawGameboard() const;
 };
 
 }  // namespace myapp

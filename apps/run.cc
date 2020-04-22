@@ -16,11 +16,11 @@ namespace myapp {
 const int kSamples = 8;
 const int kWidth = 800;
 const int kHeight = 800;
-DEFINE_string(name, "Player One", "the name of the player");
+DEFINE_string(name, "Example", "the name of the player");
 
 void ParseArgs(std::vector<std::string>* args) {
   gflags::SetUsageMessage(
-      "Play a game of Snake. Pass --helpshort for options.");
+      "Play a game of 2048.");
   int argc = static_cast<int>(args->size());
 
   std::vector<char*> argvs;
