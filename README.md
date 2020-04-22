@@ -8,6 +8,11 @@ layout.
 
 **Author**: Shreya Sharma - [`ssharm90@illinois.edu`](mailto:ssharm90@illinois.edu)
 
-Libraries used: gflags
+- Libraries used: 
+    - gflags
 
+
+- Controls:
+    - Keyboard arrows for gameplay
+    - 'm' to change the color scheme
 
