@@ -1,5 +1,7 @@
 // Copyright (c) 2020 [Your Name]. All rights reserved.
 
+#pragma once
+
 #include "my_app.h"
 
 #include <cinder/Vector.h>
@@ -19,15 +21,13 @@ using cinder::TextBox;
 
 DECLARE_string(name);
 
-MyApp::MyApp()
-    : player_name_{FLAGS_name},
+MyApp::MyApp():
+    player_name_{FLAGS_name},
     player_score_{0},
     leaderboard{cinder::app::getAssetPath("twentyfourtyeight.db").string()} {}
 
 void MyApp::setup() {
-//  cinder::gl::enableDepthWrite();
-//  cinder::gl::enableDepthRead();
-  leaderboard.AddScore(player_name_, player_score_);
+
 
 }
 

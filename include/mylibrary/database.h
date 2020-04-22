@@ -11,8 +11,8 @@ namespace mylibrary {
   class Leaderboard {
    public:
     explicit Leaderboard(const std::string& database_path);
-
     void AddScore(const std::string& player_name_, int player_score_);
+
    private:
     sqlite::database database;
   };

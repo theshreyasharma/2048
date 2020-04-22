@@ -1,5 +1,7 @@
 // Copyright (c) 2020 [Your Name]. All rights reserved.
 
+#pragma once
+
 #include <mylibrary/database.h>
 
 namespace mylibrary {
