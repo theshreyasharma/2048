@@ -5,11 +5,12 @@
 #include <Box2D/Collision/Shapes/b2PolygonShape.h>
 #include <Box2D/Common/b2Draw.h>
 #include <Box2D/Dynamics/b2World.h>
+#include <cinder/Vector.h>
 #include <cinder/app/App.h>
 #include <cinder/gl/draw.h>
 #include <cinder/gl/gl.h>
 #include <gflags/gflags.h>
-#include <cinder/Vector.h>
+#include <mylibrary/database.h>
 
 namespace myapp {
 
@@ -19,17 +20,17 @@ using cinder::ColorA;
 using cinder::Rectf;
 using cinder::TextBox;
 
-
 DECLARE_string(name);
 
 MyApp::MyApp()
     : player_name_{FLAGS_name},
-    player_score_{0} {}
+    player_score_{0},
+    leaderboard{cinder::app::getAssetPath("twentyfourtyeight.db").string()} {}
 
 void MyApp::setup() {
 //  cinder::gl::enableDepthWrite();
 //  cinder::gl::enableDepthRead();
-
+  leaderboard.AddScore(player_name_, player_score_);
 
 }
 
@@ -50,6 +51,11 @@ void MyApp::keyDown(KeyEvent event) {
   //repeat for all other directions
   //if event.getCode() == m
     //switch color scheme
+  if (event.getCode() == KeyEvent::KEY_UP) {
+    player_score_++;
+  } else if (event.getCode() == KeyEvent::KEY_DOWN) {
+    player_score_--;
+  }
 }
 
 void MyApp::DrawBackground() const {

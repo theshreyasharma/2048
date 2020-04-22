@@ -4,6 +4,7 @@
 #define FINALPROJECT_APPS_MYAPP_H_
 
 #include <cinder/app/App.h>
+#include <mylibrary/database.h>
 
 
 namespace myapp {
@@ -20,6 +21,7 @@ class MyApp : public cinder::app::App {
  private:
   const std::string player_name_;
   int player_score_;
+  mylibrary::Leaderboard leaderboard;
   static void PrintText(const std::string& text, const cinder::ivec2& size,
                         const cinder::vec2& loc);
   void DrawBackground() const;

@@ -11,7 +11,7 @@
     - No longer using Box2D, I can accomplish everything with use of Cinder libraries.
     - Decided on class structure and decided functionality of classes.
     - [x] Show working example of gflags
-    - [ ] Set up game board display
+    - [x] Set up game board display
 
 - **4/21/20** - Planned graphics setup
     - Office hours was unable to help me with my cinder issue the last 2 days, so my progress has stalled.
