@@ -5,9 +5,12 @@
 
 #include <cinder/app/App.h>
 #include <mylibrary/database.h>
+#include <mylibrary/gameboard.h>
 
 
 namespace myapp {
+
+using namespace mylibrary;
 
 class MyApp : public cinder::app::App {
  public:
@@ -22,10 +25,12 @@ class MyApp : public cinder::app::App {
   const std::string player_name_;
   int player_score_;
   mylibrary::Leaderboard leaderboard;
+  Gameboard gameboard;
   static void PrintText(const std::string& text, const cinder::ivec2& size,
                         const cinder::vec2& loc);
   void DrawBackground() const;
-  void DrawGameboard() const;
+  void DrawGameboardOutline() const;
+  void DrawBlocks();
 };
 
 }  // namespace myapp

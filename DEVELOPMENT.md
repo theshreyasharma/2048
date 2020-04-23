@@ -19,11 +19,18 @@
     - Created functions for drawing background and gameboard
     - Set up example of Box2D working
     - [x] Find out what is causing issue with drawing shapes
-    - [ ] Create classes and begin game implementation
+    - [x] Create classes and begin game implementation
 
 - **4/22/20** - Set up database, update external library, create database classes
     - Set up database using sqlite
     - Remove Box2d from my library and CMake files
     - [x] Update project proposal and readme with *final* choice of external library (sqlite3)
-    - [ ] Begin drafting Block class
-    - [ ] Decide color palettes for light and dark mode
+    - [x] Begin drafting Block class
+    - [x] Decide color palettes for light and dark mode
+    
+- **4/23/20** - Created gameboard and block classes
+    - Implemented functions that draw the block objects
+    - Added some functions to header
+    - [ ] Implement game logic
+    - [ ] Decide on dark mode palette
+       

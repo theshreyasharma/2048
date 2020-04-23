@@ -10,9 +10,11 @@
 #include <cinder/gl/gl.h>
 #include <gflags/gflags.h>
 #include <mylibrary/database.h>
+#include <mylibrary/gameboard.h>
 
 namespace myapp {
 
+using namespace mylibrary;
 using cinder::app::KeyEvent;
 using cinder::Color;
 using cinder::ColorA;
@@ -24,10 +26,12 @@ DECLARE_string(name);
 MyApp::MyApp():
     player_name_{FLAGS_name},
     player_score_{0},
-    leaderboard{cinder::app::getAssetPath("twentyfourtyeight.db").string()} {}
+    leaderboard{cinder::app::getAssetPath("twentyfourtyeight.db").string()},
+    gameboard{} {}
 
 void MyApp::setup() {
-
+  gameboard.SetBoardSize();
+  //gameboard.StartGame();
 
 }
 
@@ -37,17 +41,12 @@ void MyApp::draw() {
 
   cinder::gl::clear();
   DrawBackground();
-  DrawGameboard();
-
+  DrawGameboardOutline();
+  DrawBlocks();
 }
 
 
 void MyApp::keyDown(KeyEvent event) {
-  //if event.getCode() == Right
-    //game engine method called move(right)
-  //repeat for all other directions
-  //if event.getCode() == m
-    //switch color scheme
   if (event.getCode() == KeyEvent::KEY_UP) {
     player_score_++;
   } else if (event.getCode() == KeyEvent::KEY_DOWN) {
@@ -56,7 +55,7 @@ void MyApp::keyDown(KeyEvent event) {
 }
 
 void MyApp::DrawBackground() const {
-  cinder::gl::clear(ColorA::white());
+  cinder::gl::clear(Color(0.811, 0.847, 0.843));
   ci::vec2 size(500, 50);
   ci::vec2 location(200, 70);
   PrintText("Player: " + player_name_, size, location);
@@ -83,7 +82,7 @@ void MyApp::PrintText(const std::string& text, const cinder::ivec2& size,
   cinder::gl::draw(texture, locp);
 }
 
-void MyApp::DrawGameboard() const {
+void MyApp::DrawGameboardOutline() const {
   //y = 100 to y = 700
   //x = 100 to x = 700
   cinder::gl::color(0.42f,0.48f,0.55f);
@@ -97,6 +96,25 @@ void MyApp::DrawGameboard() const {
   cinder::gl::drawLine(ci::vec2{400, 100}, ci::vec2{400, 700});
   cinder::gl::drawLine(ci::vec2{550, 100}, ci::vec2{550, 700});
 
+}
+void MyApp::DrawBlocks() {
+  // For demo purposes
+  gameboard.board[0][0].SetValue(2);
+  gameboard.board[2][2].SetValue(512);
+  gameboard.board[1][0].SetValue(2048);
+  gameboard.board[3][3].SetValue(1024);
+  for (int row = 0; row < gameboard.kBoardSize; row++) {
+    for (int col = 0; col < gameboard.kBoardSize; col++) {
+      if (gameboard.board[row][col].value != 0) {
+        std::vector<int> x_points = gameboard.GetRowPixelVal(row);
+        std::vector<int> y_points = gameboard.GetColumnPixelVal(col);
+        cinder::gl::color(gameboard.board[row][col].GetColor());
+        cinder::gl::drawSolidRect(Rectf(x_points[0], y_points[0], x_points[1], y_points[1]));
+        ci::vec2 size(150, 150);
+        PrintText(std::to_string(gameboard.board[row][col].value), size, {x_points[0] + 70, y_points[1] - 20});
+      }
+    }
+  }
 }
 
 }  // namespace myapp

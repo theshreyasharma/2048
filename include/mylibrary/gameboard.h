@@ -12,12 +12,27 @@
 namespace mylibrary {
 
   class Gameboard{
+
    public:
     Gameboard();
+    int AddRandomBlock();
 
-   private:
-    Block board;
+    // All the movement ones, return score to add to player score
+    int MoveUp();
+    int MoveLeft();
+    int MoveRight();
+    int MoveDown();
 
+    void StartGame();
+    void GetRandomEmptyPosition();
+    std::vector<int> GetRowPixelVal(int row_) const;
+    std::vector<int> GetColumnPixelVal(int col_) const;
+    /**
+     * Set the size of the board to kBoardSize and fill it with blocks with value 0
+     */
+    void SetBoardSize();
+    const int kBoardSize = 4;
+    std::vector<std::vector<mylibrary::Block>> board;
   };
 
 
