@@ -15,7 +15,7 @@ namespace mylibrary {
 
    public:
     Gameboard();
-    int AddRandomBlock();
+    bool AddRandomBlock();
 
     // All the movement ones, return score to add to player score
     int MoveUp();
@@ -24,7 +24,7 @@ namespace mylibrary {
     int MoveDown();
 
     void StartGame();
-    void GetRandomEmptyPosition();
+    std::vector<int> GetRandomEmptyPosition();
     std::vector<int> GetRowPixelVal(int row_) const;
     std::vector<int> GetColumnPixelVal(int col_) const;
     /**

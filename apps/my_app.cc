@@ -27,7 +27,8 @@ MyApp::MyApp():
     player_name_{FLAGS_name},
     player_score_{0},
     leaderboard{cinder::app::getAssetPath("twentyfourtyeight.db").string()},
-    gameboard{} {}
+    gameboard{},
+    color_mode_{0} {}
 
 void MyApp::setup() {
   gameboard.SetBoardSize();
@@ -48,10 +49,22 @@ void MyApp::draw() {
 
 void MyApp::keyDown(KeyEvent event) {
   if (event.getCode() == KeyEvent::KEY_UP) {
+    gameboard.AddRandomBlock();
     player_score_++;
   } else if (event.getCode() == KeyEvent::KEY_DOWN) {
     player_score_--;
+  } else if (event.getCode() == KeyEvent::KEY_RIGHT) {
+    player_score_++;
+  } else if (event.getCode() == KeyEvent::KEY_LEFT) {
+    player_score_--;
+  } else if (event.getChar() == 'm') {
+    if (color_mode_ == 0) {
+      color_mode_ = 1;
+    } else {
+      color_mode_ = 0;
+    }
   }
+
 }
 
 void MyApp::DrawBackground() const {
@@ -99,16 +112,13 @@ void MyApp::DrawGameboardOutline() const {
 }
 void MyApp::DrawBlocks() {
   // For demo purposes
-  gameboard.board[0][0].SetValue(2);
-  gameboard.board[2][2].SetValue(512);
-  gameboard.board[1][0].SetValue(2048);
-  gameboard.board[3][3].SetValue(1024);
+
   for (int row = 0; row < gameboard.kBoardSize; row++) {
     for (int col = 0; col < gameboard.kBoardSize; col++) {
       if (gameboard.board[row][col].value != 0) {
         std::vector<int> x_points = gameboard.GetRowPixelVal(row);
         std::vector<int> y_points = gameboard.GetColumnPixelVal(col);
-        cinder::gl::color(gameboard.board[row][col].GetColor());
+        cinder::gl::color(gameboard.board[row][col].GetColor(color_mode_));
         cinder::gl::drawSolidRect(Rectf(x_points[0], y_points[0], x_points[1], y_points[1]));
         ci::vec2 size(150, 150);
         PrintText(std::to_string(gameboard.board[row][col].value), size, {x_points[0] + 70, y_points[1] - 20});

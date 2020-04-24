@@ -33,4 +33,8 @@
     - Added some functions to header
     - [ ] Implement game logic
     - [ ] Decide on dark mode palette
+    
+- **4/24/20** - Began implementing game logic
+    - Created adding new tile function and find empty tile functions
+    - [ ] Figure out logic to merge rows and columns when a button is pressed
        

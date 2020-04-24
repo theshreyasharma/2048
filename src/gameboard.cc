@@ -5,6 +5,7 @@
 #pragma once
 
 #include <mylibrary/gameboard.h>
+#include <cinder/Rand.h>
 
 #include "mylibrary/gameboard.h"
 #include "../include/mylibrary/gameboard.h"
@@ -24,9 +25,23 @@ namespace mylibrary {
       }
     }
 
-    void mylibrary::Gameboard::GetRandomEmptyPosition() {
+    std::vector<int> mylibrary::Gameboard::GetRandomEmptyPosition() {
+      std::vector<int> empty_position;
 
+      for (int i = 0; i < kBoardSize*kBoardSize; i++) {
+        int random_row = rand() % (kBoardSize);
+        int random_col = rand() % (kBoardSize);
+        if (board[random_row][random_col].value == 0) {
+          //space is empty and valid
+          empty_position.push_back(random_row);
+          empty_position.push_back(random_col);
+          return empty_position;
+        }
+      }
+      // Return empty vector if no empty spaces on board, game should be over
+      return empty_position;
     }
+
     std::vector<int> Gameboard::GetRowPixelVal(int row_) const {
       int row_counter = 0;
       std::vector<int> x_values_;
@@ -57,4 +72,12 @@ namespace mylibrary {
       return y_values_;
     }
 
+    bool Gameboard::AddRandomBlock() {
+      std::vector<int> empty_position = GetRandomEmptyPosition();
+      if (!empty_position.empty()) {
+        board[empty_position[0]][empty_position[1]].SetValue(2);
+        return true;
+      }
+      return false;
+    }
     }

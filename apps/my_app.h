@@ -26,6 +26,7 @@ class MyApp : public cinder::app::App {
   int player_score_;
   mylibrary::Leaderboard leaderboard;
   Gameboard gameboard;
+  int color_mode_;
   static void PrintText(const std::string& text, const cinder::ivec2& size,
                         const cinder::vec2& loc);
   void DrawBackground() const;

@@ -11,7 +11,7 @@ namespace mylibrary {
    public:
     Block();
     Block(int set_value_, int set_row, int set_col);
-    cinder::Color GetColor();
+    cinder::Color GetColor(int mode_);
     void SetValue(int set_value);
     int value;
 
