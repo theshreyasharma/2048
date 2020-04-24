@@ -10,28 +10,54 @@
 #include <vector>
 
 namespace mylibrary {
-
   class Gameboard{
 
    public:
     Gameboard();
+    /**
+     * Default height and width of a 2048 board is 4 high by 4 wide
+     */
+    const int kBoardSize = 4;
+
+    int score;
+
+    void MoveUp();
+    void MoveRight();
+    void MoveLeft();
+
+    /**
+     * Adds a block in a random location
+     * @return true if adding block was successful, false otherwise
+     */
     bool AddRandomBlock();
 
-    // All the movement ones, return score to add to player score
-    int MoveUp();
-    int MoveLeft();
-    int MoveRight();
-    int MoveDown();
-
-    void StartGame();
+    /**
+     * Finds a random empty tile and returns the coordinates
+     * @return vector of ints, x in first position, y in second position
+     */
     std::vector<int> GetRandomEmptyPosition();
+
+    /**
+     * Associates row with a certain pixel value for drawing
+     * @param row_ - row in the array
+     * @return - a vector of ints, beginning pixel in the first index, ending pixel in the second index
+     */
     std::vector<int> GetRowPixelVal(int row_) const;
+
+    /**
+     * Associates row with a certain pixel value for drawing
+     * @param col_ - column in the array
+     * @return - a vector of ints, beginning pixel in the first index, ending pixel in the second index
+     */
     std::vector<int> GetColumnPixelVal(int col_) const;
     /**
      * Set the size of the board to kBoardSize and fill it with blocks with value 0
      */
     void SetBoardSize();
-    const int kBoardSize = 4;
+
+    /**
+     * Board object, 2d vector of blocks
+     */
     std::vector<std::vector<mylibrary::Block>> board;
   };
 

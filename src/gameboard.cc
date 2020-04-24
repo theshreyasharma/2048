@@ -13,7 +13,8 @@
 
 namespace mylibrary {
 
-    mylibrary::Gameboard::Gameboard() : board{} {}
+    mylibrary::Gameboard::Gameboard() : board{},
+    score{0} {}
 
     void mylibrary::Gameboard::SetBoardSize() {
       board.resize(kBoardSize);
@@ -80,4 +81,60 @@ namespace mylibrary {
       }
       return false;
     }
+
+    void Gameboard::MoveLeft() {
+
+      for (int col = 0; col < kBoardSize; col++) {
+        for (int row = 0; row < kBoardSize; row++) {
+
+          for (int target = row + 1; target < kBoardSize; target++) {
+
+            if (board[target][col].value != 0) {
+
+              if (board[row][col].value == 0) {
+
+                board[row][col].value = board[target][col].value;
+                board[target][col].value = 0;
+
+              } else if (board[row][col].value == board[target][col].value) {
+
+                board[row][col].value += board[target][col].value;
+                score += board[row][col].value;
+                board[target][col].value = 0;
+
+              }
+            }
+          }
+        }
+      }
+
     }
+
+    void Gameboard::MoveUp() {
+
+      for (int row = 0; row < kBoardSize; row++) {
+        for (int col = 0; col < kBoardSize; col++) {
+
+          for (int target = col + 1; target < kBoardSize; target++) {
+
+            if (board[row][target].value != 0) {
+
+              if (board[row][col].value == 0) {
+
+                board[row][col].value = board[row][target].value;
+                board[row][target].value = 0;
+
+              } else if (board[row][col].value == board[row][target].value) {
+
+                board[row][col].value += board[row][target].value;
+                score += board[row][col].value;
+                board[row][target].value = 0;
+
+              }
+            }
+          }
+        }
+      }
+
+    }
+}

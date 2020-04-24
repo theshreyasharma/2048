@@ -36,5 +36,8 @@
     
 - **4/24/20** - Began implementing game logic
     - Created adding new tile function and find empty tile functions
+    - Added game state enum
     - [ ] Figure out logic to merge rows and columns when a button is pressed
+    - [ ] Winner and loser logic with leaderboard
+    - [ ] isGameOver logic (is board full and not mergable with no 2048 block, is there a 2048 block, is there a valid move even if board is full)
        

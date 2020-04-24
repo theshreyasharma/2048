@@ -28,18 +28,21 @@ MyApp::MyApp():
     player_score_{0},
     leaderboard{cinder::app::getAssetPath("twentyfourtyeight.db").string()},
     gameboard{},
-    color_mode_{0} {}
+    color_mode_{0},
+    state_{} {}
 
 void MyApp::setup() {
   gameboard.SetBoardSize();
-  //gameboard.StartGame();
+  state_ = GameState::kPlaying;
+  // Game begins with two blocks on the board
+  gameboard.AddRandomBlock();
+  gameboard.AddRandomBlock();
 
 }
 
 void MyApp::update() { }
 
 void MyApp::draw() {
-
   cinder::gl::clear();
   DrawBackground();
   DrawGameboardOutline();
@@ -49,15 +52,16 @@ void MyApp::draw() {
 
 void MyApp::keyDown(KeyEvent event) {
   if (event.getCode() == KeyEvent::KEY_UP) {
+    gameboard.MoveUp();
     gameboard.AddRandomBlock();
-    player_score_++;
   } else if (event.getCode() == KeyEvent::KEY_DOWN) {
-    player_score_--;
+    gameboard.AddRandomBlock();
   } else if (event.getCode() == KeyEvent::KEY_RIGHT) {
-    player_score_++;
+    gameboard.AddRandomBlock();
   } else if (event.getCode() == KeyEvent::KEY_LEFT) {
-    player_score_--;
-  } else if (event.getChar() == 'm') {
+    gameboard.MoveLeft();
+    gameboard.AddRandomBlock();
+  } else if (event.getCode() == KeyEvent::KEY_m) {
     if (color_mode_ == 0) {
       color_mode_ = 1;
     } else {
@@ -68,16 +72,19 @@ void MyApp::keyDown(KeyEvent event) {
 }
 
 void MyApp::DrawBackground() const {
+
   cinder::gl::clear(Color(0.811, 0.847, 0.843));
   ci::vec2 size(500, 50);
   ci::vec2 location(200, 70);
   PrintText("Player: " + player_name_, size, location);
   PrintText("Score: " + std::to_string(player_score_), size, {location.x + 400, location.y});
   PrintText("Welcome to 2048! Use the arrow keys to play!", {700, 50}, {400, 750});
+
 }
 
 void MyApp::PrintText(const std::string& text, const cinder::ivec2& size,
                       const cinder::vec2& loc) {
+
   Color color(0.42f,0.48f,0.55f);
   cinder::gl::color(color);
   auto box = TextBox()
@@ -93,9 +100,11 @@ void MyApp::PrintText(const std::string& text, const cinder::ivec2& size,
   const auto surface = box.render();
   const auto texture = cinder::gl::Texture::create(surface);
   cinder::gl::draw(texture, locp);
+
 }
 
 void MyApp::DrawGameboardOutline() const {
+
   //y = 100 to y = 700
   //x = 100 to x = 700
   cinder::gl::color(0.42f,0.48f,0.55f);
@@ -111,20 +120,24 @@ void MyApp::DrawGameboardOutline() const {
 
 }
 void MyApp::DrawBlocks() {
-  // For demo purposes
 
   for (int row = 0; row < gameboard.kBoardSize; row++) {
     for (int col = 0; col < gameboard.kBoardSize; col++) {
+
       if (gameboard.board[row][col].value != 0) {
+
         std::vector<int> x_points = gameboard.GetRowPixelVal(row);
         std::vector<int> y_points = gameboard.GetColumnPixelVal(col);
+
         cinder::gl::color(gameboard.board[row][col].GetColor(color_mode_));
         cinder::gl::drawSolidRect(Rectf(x_points[0], y_points[0], x_points[1], y_points[1]));
         ci::vec2 size(150, 150);
         PrintText(std::to_string(gameboard.board[row][col].value), size, {x_points[0] + 70, y_points[1] - 20});
+
       }
     }
   }
+
 }
 
 }  // namespace myapp

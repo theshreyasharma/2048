@@ -11,12 +11,26 @@ namespace mylibrary {
    public:
     Block();
     Block(int set_value_, int set_row, int set_col);
+    /**
+     * Returns Color for the block based on color mode and value
+     * @param mode_ - light or dark mode
+     * @return - Color object
+     */
     cinder::Color GetColor(int mode_);
     void SetValue(int set_value);
+    /**
+     * Value of the block, 2 to some power
+     */
     int value;
 
    private:
+    /**
+     * Row that block resides in
+     */
     int row;
+    /**
+     * Column that the block resides in
+     */
     int col;
   };
 }
