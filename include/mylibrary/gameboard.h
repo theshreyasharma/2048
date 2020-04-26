@@ -24,6 +24,7 @@ namespace mylibrary {
     void MoveUp();
     void MoveRight();
     void MoveLeft();
+    void MoveDown();
 
     /**
      * Adds a block in a random location

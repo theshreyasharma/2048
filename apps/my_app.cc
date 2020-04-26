@@ -25,7 +25,6 @@ DECLARE_string(name);
 
 MyApp::MyApp():
     player_name_{FLAGS_name},
-    player_score_{0},
     leaderboard{cinder::app::getAssetPath("twentyfourtyeight.db").string()},
     gameboard{},
     color_mode_{0},
@@ -55,8 +54,10 @@ void MyApp::keyDown(KeyEvent event) {
     gameboard.MoveUp();
     gameboard.AddRandomBlock();
   } else if (event.getCode() == KeyEvent::KEY_DOWN) {
+    gameboard.MoveDown();
     gameboard.AddRandomBlock();
   } else if (event.getCode() == KeyEvent::KEY_RIGHT) {
+    gameboard.MoveRight();
     gameboard.AddRandomBlock();
   } else if (event.getCode() == KeyEvent::KEY_LEFT) {
     gameboard.MoveLeft();
@@ -77,7 +78,7 @@ void MyApp::DrawBackground() const {
   ci::vec2 size(500, 50);
   ci::vec2 location(200, 70);
   PrintText("Player: " + player_name_, size, location);
-  PrintText("Score: " + std::to_string(player_score_), size, {location.x + 400, location.y});
+  PrintText("Score: " + std::to_string(gameboard.score), size, {location.x + 400, location.y});
   PrintText("Welcome to 2048! Use the arrow keys to play!", {700, 50}, {400, 750});
 
 }

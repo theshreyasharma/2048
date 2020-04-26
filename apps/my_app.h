@@ -29,7 +29,6 @@ class MyApp : public cinder::app::App {
 
  private:
   const std::string player_name_;
-  int player_score_;
   mylibrary::Leaderboard leaderboard;
   Gameboard gameboard;
   int color_mode_;
