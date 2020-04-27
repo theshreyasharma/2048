@@ -14,17 +14,40 @@ namespace mylibrary {
 
    public:
     Gameboard();
+
     /**
      * Default height and width of a 2048 board is 4 high by 4 wide
      */
     const int kBoardSize = 4;
 
+    /**
+     * Player score, updated as moves are made
+     */
     int score;
 
+    /**
+     * Called based on the button the user clicks, slides all the tiles and combines them
+     * as the game calls for
+     */
     void MoveUp();
     void MoveRight();
     void MoveLeft();
     void MoveDown();
+
+    /**
+     * Searches board for a 2048 tile
+     * @return true if 2048 block is found, false otherwise
+     */
+    bool Contains2048Tile();
+
+    bool operator==(const Gameboard& other) const;
+
+    /**
+     * Check whether the board has changed
+     * @param other
+     * @return
+     */
+    bool IsBoardDifferent(Gameboard first, Gameboard second);
 
     /**
      * Adds a block in a random location

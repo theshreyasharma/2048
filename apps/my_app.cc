@@ -36,12 +36,19 @@ void MyApp::setup() {
   // Game begins with two blocks on the board
   gameboard.AddRandomBlock();
   gameboard.AddRandomBlock();
-
 }
 
-void MyApp::update() { }
+void MyApp::update() {
+  if (state_ == GameState::kWinner || state_ == GameState::kLoser) {
+    state_ = GameState::kShowLeaderboard;
+    //leaderboard.AddScore(player_name_, gameboard.score);
+  }
+}
 
 void MyApp::draw() {
+  if (gameboard.Contains2048Tile()) {
+    state_ = GameState::kWinner;
+  }
   cinder::gl::clear();
   DrawBackground();
   DrawGameboardOutline();
@@ -50,18 +57,42 @@ void MyApp::draw() {
 
 
 void MyApp::keyDown(KeyEvent event) {
+  Gameboard copy_ = gameboard;
   if (event.getCode() == KeyEvent::KEY_UP) {
     gameboard.MoveUp();
-    gameboard.AddRandomBlock();
+    // If board is still full after move is made and before
+    // tile is added, game is over
+    if (gameboard.GetRandomEmptyPosition().empty()
+          && !gameboard.Contains2048Tile()) {
+      state_ = GameState::kLoser;
+    } else if (!(gameboard == copy_)) {
+      // Don't add block if copy of board is the same
+      gameboard.AddRandomBlock();
+    }
   } else if (event.getCode() == KeyEvent::KEY_DOWN) {
     gameboard.MoveDown();
-    gameboard.AddRandomBlock();
+    if (gameboard.GetRandomEmptyPosition().empty()
+        && !gameboard.Contains2048Tile()) {
+      state_ = GameState::kLoser;
+    } else if (!(gameboard == copy_)) {
+      gameboard.AddRandomBlock();
+    }
   } else if (event.getCode() == KeyEvent::KEY_RIGHT) {
     gameboard.MoveRight();
-    gameboard.AddRandomBlock();
+    if (gameboard.GetRandomEmptyPosition().empty()
+        && !gameboard.Contains2048Tile()) {
+      state_ = GameState::kLoser;
+    } else if (!(gameboard == copy_)) {
+      gameboard.AddRandomBlock();
+    }
   } else if (event.getCode() == KeyEvent::KEY_LEFT) {
     gameboard.MoveLeft();
-    gameboard.AddRandomBlock();
+    if (gameboard.GetRandomEmptyPosition().empty()
+        && !gameboard.Contains2048Tile()) {
+      state_ = GameState::kLoser;
+    } else if (!(gameboard == copy_)) {
+      gameboard.AddRandomBlock();
+    }
   } else if (event.getCode() == KeyEvent::KEY_m) {
     if (color_mode_ == 0) {
       color_mode_ = 1;

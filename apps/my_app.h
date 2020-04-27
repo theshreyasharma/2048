@@ -15,7 +15,8 @@ using namespace mylibrary;
 enum class GameState {
   kPlaying,
   kWinner,
-  kLoser
+  kLoser,
+  kShowLeaderboard
 };
 
 class MyApp : public cinder::app::App {
@@ -44,6 +45,7 @@ class MyApp : public cinder::app::App {
   void DrawBackground() const;
   void DrawGameboardOutline() const;
   void DrawBlocks();
+  void DrawGameOver();
 };
 
 }  // namespace myapp

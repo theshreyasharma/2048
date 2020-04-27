@@ -137,6 +137,7 @@ namespace mylibrary {
       }
 
     }
+
     void Gameboard::MoveRight() {
 
       for (int col = kBoardSize - 1; col >= 0; col--) {
@@ -159,6 +160,7 @@ namespace mylibrary {
       }
 
     }
+
     void Gameboard::MoveDown() {
 
       for (int row = kBoardSize - 1; row >= 0; row--) {
@@ -176,11 +178,37 @@ namespace mylibrary {
                 board[row][target].value = 0;
               }
             }
-
           }
-
         }
       }
+
+    }
+
+    bool Gameboard::Contains2048Tile() {
+      for (int i = 0; i < kBoardSize; i++) {
+        for (int j = 0; j < kBoardSize; j++) {
+          if (board[i][j].value == 2048) {
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+
+    bool Gameboard::operator==(const Gameboard& other) const {
+      if (board.size() != other.board.size()) {
+        return false;
+      }
+
+      for (int i = 0; i < kBoardSize; i++) {
+        for (int j = 0; j < kBoardSize; j++) {
+          if (board[i][j].value != other.board[i][j].value) {
+            return false;
+          }
+        }
+      }
+
+      return true;
 
     }
 

@@ -48,4 +48,11 @@
     - Moved score variable from my_app class to gameboard class
     - [ ] Implement GameOver logic
     - [x] Fix incorrect merging (might have to do with row/col being greater than the target)
+    
+- **4/27/20** - Added tests for gameboard and block classes
+    - Implemented operator overload for == to check whether a valid move was made
+    - Did half of the game over logic, have to add to leaderboard now
+    - [ ] Add to leaderboard when game is over
+    - [ ] Dark mode palette
+    - [ ] Add more tests
        
