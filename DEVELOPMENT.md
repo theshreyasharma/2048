@@ -56,11 +56,11 @@
     - [ ] Dark mode palette
     - [x] Add more tests
     - [ ] Add timer functionality and music
-    - [ ] Update README.md with proper formatting
+    - [x] Update README.md with proper formatting
     - [ ] Make gameboard look better
     
 - **4/28/20** - Finished tests for gameboard and block classes
     - Add scores to leaderboard when game is over
     - Wrote game over logic with a enum
-    
+    - Updated README.md
        

@@ -16,17 +16,19 @@ layout.
 
 
 ## Game
-
+The goal is to reach the 2048 tile by combining like tiles. Don't let the board fill up.
 ### Controls
-    
-    Key           | Action
-    --------------|-------------------------
-    <kbd>Up</kbd> | Slide the board upwards
-    <kbd>Down</kbd>| Slide the board downwards
-    <kbd>Left
-    
-    
-- Keyboard arrows for gameplay
-- 'm' to change the color scheme
-- 'q' to quit the game
+#### Play
+Key|Action
+---|------
+<kbd>Up</kbd>|Slide the board upwards
+<kbd>Down</kbd>|Slide the board downwards
+<kbd>Left</kbd>|Slide the board to the left
+<kbd>Right</kbd>|Slide the board to the right
 
+#### Other
+Key|Action
+---|------
+<kbd>m</kbd>|Toggle between light and dark mode
+<kbd>q</kbd>|Forfeit the current game
+    
