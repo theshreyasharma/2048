@@ -54,5 +54,10 @@
     - Did half of the game over logic, have to add to leaderboard now
     - [ ] Add to leaderboard when game is over
     - [ ] Dark mode palette
-    - [ ] Add more tests
+    - [x] Add more tests
+    - [ ] Add timer functionality and music
+    - [ ] Update README.md with proper formatting
+    - [ ] Make gameboard look better
+    
+- **4/28/20** - Finished tests for gameboard and block classes
        

@@ -33,6 +33,7 @@ cinder::Color Block::GetColor(int mode_) {
     else if (value == 8) {return cinder::Color(0.866, 0.733, 0.886);}
     else if (value == 4) {return cinder::Color(0.827, 0.713, 0.854);}
     else if (value == 2) {return cinder::Color(0.749, 0.670, 0.796);}
+    else {return cinder::Color(.5,.5,.5);}
   } else if (mode_ == 1) {
     // Temporary, will implement dark mode color scheme later
     return cinder::Color(.5,.5,.5);

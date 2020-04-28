@@ -40,14 +40,12 @@ namespace mylibrary {
      */
     bool Contains2048Tile();
 
-    bool operator==(const Gameboard& other) const;
-
     /**
-     * Check whether the board has changed
-     * @param other
-     * @return
+     * Operator overload to compare 2 gameboards
+     * @param other - Gameboard object to compare to
+     * @return true if all values are the same for both, false otherwise
      */
-    bool IsBoardDifferent(Gameboard first, Gameboard second);
+    bool operator==(const Gameboard& other) const;
 
     /**
      * Adds a block in a random location

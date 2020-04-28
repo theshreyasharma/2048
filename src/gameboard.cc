@@ -146,13 +146,18 @@ namespace mylibrary {
           for (int target = row - 1; target >= 0; target--) {
 
             if (board[target][col].value != 0 && target < row) {
+
               if (board[row][col].value == 0) {
+
                 board[row][col].value = board[target][col].value;
                 board[target][col].value = 0;
+
               } else if (board[row][col].value == board[target][col].value) {
+
                 board[row][col].value += board[target][col].value;
                 score += board[row][col].value;
                 board[target][col].value = 0;
+
               }
             }
           }
@@ -169,13 +174,18 @@ namespace mylibrary {
           for (int target = col - 1; target >= 0; target--) {
 
             if (board[row][target].value != 0 && target < col) {
+
               if (board[row][col].value == 0) {
+
                 board[row][col].value = board[row][target].value;
                 board[row][target].value = 0;
+
               } else if (board[row][col].value == board[row][target].value) {
+
                 board[row][col].value += board[row][target].value;
                 score += board[row][col].value;
                 board[row][target].value = 0;
+
               }
             }
           }
