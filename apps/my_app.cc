@@ -41,7 +41,11 @@ void MyApp::setup() {
 void MyApp::update() {
   if (state_ == GameState::kWinner || state_ == GameState::kLoser) {
     state_ = GameState::kShowLeaderboard;
-    //leaderboard.AddScore(player_name_, gameboard.score);
+    if (high_scores_.empty()) {
+      const size_t player_score_ = gameboard.score;
+      leaderboard.AddScore({player_name_, player_score_});
+      high_scores_ = leaderboard.RetrieveHighScores(3);
+    }
   }
 }
 
@@ -49,6 +53,13 @@ void MyApp::draw() {
   if (gameboard.Contains2048Tile()) {
     state_ = GameState::kWinner;
   }
+
+  if (state_ == GameState::kShowLeaderboard) {
+    cinder::gl::clear(Color(1,0,0));
+    DrawGameOver();
+    return;
+  }
+
   cinder::gl::clear();
   DrawBackground();
   DrawGameboardOutline();
@@ -99,6 +110,8 @@ void MyApp::keyDown(KeyEvent event) {
     } else {
       color_mode_ = 0;
     }
+  } else if (event.getCode() == KeyEvent::KEY_q) {
+    state_ = GameState::kLoser;
   }
 
 }
@@ -168,6 +181,30 @@ void MyApp::DrawBlocks() {
 
       }
     }
+  }
+
+}
+void MyApp::DrawGameOver() {
+
+  const cinder::vec2 center = getWindowCenter();
+  const cinder::ivec2 size = {500, 50};
+  size_t row = 0;
+
+  PrintText("Game Over", size, center);
+  for (const Player& player : high_scores_) {
+    std::stringstream ss;
+    ss << player.name << " - " << player.score;
+    PrintText(ss.str(), size, {center.x, center.y + (++row) * 50});
+  }
+
+  row += 2;
+
+  if (gameboard.Contains2048Tile()) {
+    PrintText("You won!", size, {center.x, center.y + (++row) * 50});
+    PrintText("You: " + player_name_ + " - " + std::to_string(gameboard.score), size, {center.x, center.y + (++row) * 50});
+  } else {
+    PrintText("You lost!", size, {center.x, center.y + (++row) * 50});
+    PrintText("You: " + player_name_ + " - " + std::to_string(gameboard.score), size, {center.x, center.y + (++row) * 50});
   }
 
 }

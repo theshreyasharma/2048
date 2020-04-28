@@ -8,14 +8,25 @@ layout.
 
 **Author**: Shreya Sharma - [`ssharm90@illinois.edu`](mailto:ssharm90@illinois.edu)
 
-- The classic 2048 game as a cinder app
+#### The classic 2048 game as a cinder app
 
-- Libraries used: 
+## Libraries used: 
     - gflags
     - sqlite3
 
 
-- Controls:
-    - Keyboard arrows for gameplay
-    - 'm' to change the color scheme
+## Game
+
+### Controls
+    
+    Key           | Action
+    --------------|-------------------------
+    <kbd>Up</kbd> | Slide the board upwards
+    <kbd>Down</kbd>| Slide the board downwards
+    <kbd>Left
+    
+    
+- Keyboard arrows for gameplay
+- 'm' to change the color scheme
+- 'q' to quit the game
 

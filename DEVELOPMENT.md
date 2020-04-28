@@ -31,7 +31,7 @@
 - **4/23/20** - Created gameboard and block classes
     - Implemented functions that draw the block objects
     - Added some functions to header
-    - [ ] Implement game logic
+    - [x] Implement game logic
     - [ ] Decide on dark mode palette
     
 - **4/24/20** - Began implementing game logic
@@ -39,20 +39,20 @@
     - Added game state enum
     - Implemented functions to move the blocks on the board left and up
     - [x] Figure out logic to merge rows and columns when a button is pressed
-    - [ ] Winner and loser logic with leaderboard
-    - [ ] isGameOver logic (is board full and not mergable with no 2048 block, is there a 2048 block, is there a valid move even if board is full)
+    - [x] Winner and loser logic with leaderboard
+    - [x] isGameOver logic (is board full and not mergable with no 2048 block, is there a 2048 block, is there a valid move even if board is full)
     - [x] Update score variable
     
 - **4/26/20** - Finished game logic mostly, have to include GameOver logic
     - Implemented MoveRight and MoveDown functions
     - Moved score variable from my_app class to gameboard class
-    - [ ] Implement GameOver logic
+    - [x] Implement GameOver logic
     - [x] Fix incorrect merging (might have to do with row/col being greater than the target)
     
 - **4/27/20** - Added tests for gameboard and block classes
     - Implemented operator overload for == to check whether a valid move was made
     - Did half of the game over logic, have to add to leaderboard now
-    - [ ] Add to leaderboard when game is over
+    - [x] Add to leaderboard when game is over
     - [ ] Dark mode palette
     - [x] Add more tests
     - [ ] Add timer functionality and music
@@ -60,4 +60,7 @@
     - [ ] Make gameboard look better
     
 - **4/28/20** - Finished tests for gameboard and block classes
+    - Add scores to leaderboard when game is over
+    - Wrote game over logic with a enum
+    
        

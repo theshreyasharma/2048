@@ -13,10 +13,34 @@ namespace mylibrary {
            ");";
   }
 
-  void Leaderboard::AddScore(const std::string& player_name_, int player_score_) {
+  void Leaderboard::AddScore(const Player player) {
     database << "INSERT INTO twentyfourtyeight (name, score) VALUES (?,?);"
-             << player_name_
-             << player_score_;
+             << player.name
+             << player.score;
+  }
+
+  std::vector<Player> GetPlayers(sqlite::database_binder* rows) {
+    std::vector<Player> players;
+
+    for (auto&& row : *rows) {
+      std::string name;
+      size_t score;
+      row >> name >> score;
+      Player player = {name, score};
+      players.push_back(player);
+    }
+
+    return players;
+  }
+
+  std::vector<Player> Leaderboard::RetrieveHighScores(const size_t limit) {
+    auto rows = database << "SELECT name, score "
+                       "FROM twentyfourtyeight "
+                       "ORDER BY score DESC "
+                       "LIMIT ?;"
+                    << limit;
+
+    return GetPlayers(&rows);
   }
 
 }  // namespace mylibrary
