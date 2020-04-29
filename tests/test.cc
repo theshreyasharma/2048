@@ -16,6 +16,7 @@ TEST_CASE("Gameboard construction and GetRandomEmptyPosition", "[gameboard][get-
   // Make sure board is empty
   REQUIRE(gameboard.board.size() == 4);
   REQUIRE(gameboard.board[2].size() == 4);
+  // Every Block should have value 0
   REQUIRE(gameboard.board[2][2].value == 0);
 
   SECTION("Test Get Random Empty Position") {

@@ -10,13 +10,20 @@ layout.
 
 #### The classic 2048 game as a cinder app
 
-## Libraries used: 
+## How to run the game
+### Dependencies needed:
+    - CLion
+    - Cinder Framework
+### Libraries used: 
     - gflags
     - sqlite3
 
 
 ## Game
-The goal is to reach the 2048 tile by combining like tiles. Don't let the board fill up.
+### How to play
+The goal is to reach the 2048 tile by combining like tiles. Each turn, a new block with the value 2 appears in a random space. When you combine tiles by shifting the board in any direction, blocks with the same value merge and double in value. Don't let the board fill up. Your score increases by the value of each combined tile during each move. 
+### About
+This game was originally created by a 19 year old named Gabriele Cirulli in 2014 and has been expanded to several different platforms since then due to its extreme popularity.
 ### Controls
 #### Play
 Key|Action
@@ -32,3 +39,5 @@ Key|Action
 <kbd>m</kbd>|Toggle between light and dark mode
 <kbd>q</kbd>|Forfeit the current game
     
+## Original Project Proposal
+Can be found [here](https://github.com/CS126SP20/project-proposal-ssharm90#2048)

@@ -43,7 +43,13 @@ class MyApp : public cinder::app::App {
    */
   static void PrintText(const std::string& text, const cinder::ivec2& size,
                         const cinder::vec2& loc);
+  /**
+   * Draws background that displays score and player name while also setting background color
+   */
   void DrawBackground() const;
+  /**
+   * Draws the gameboard outline, which is a 600x600 square
+   */
   void DrawGameboardOutline() const;
   void DrawBlocks();
   void DrawGameOver();

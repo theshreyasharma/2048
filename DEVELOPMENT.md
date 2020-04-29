@@ -64,3 +64,8 @@
     - Wrote game over logic with a enum
     - Updated README.md
        
+- **4/29/20** - Added Project Proposal and dependencies to README.md
+    - [ ] Dark mode palette and implementation
+    - [ ] Timer functionality
+    - [ ] Add Music
+    - [ ] Improve gameboard look       
