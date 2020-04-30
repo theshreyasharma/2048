@@ -14,7 +14,7 @@ layout.
 ### Dependencies needed:
     - CLion
     - Cinder Framework
-### Libraries used: 
+### External Libraries needed: 
     - gflags
     - sqlite3
 
@@ -40,4 +40,4 @@ Key|Action
 <kbd>q</kbd>|Forfeit the current game
     
 ## Original Project Proposal
-Can be found [here](https://github.com/CS126SP20/project-proposal-ssharm90#2048)
+Can be found [here](https://github.com/CS126SP20/project-proposal-ssharm90#2048).

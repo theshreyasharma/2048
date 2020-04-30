@@ -48,10 +48,16 @@ class MyApp : public cinder::app::App {
    */
   void DrawBackground() const;
   /**
-   * Draws the gameboard outline, which is a 600x600 square
+   * Draws the gameboard outline, which is a 600x600 pixel square split into 4x4
    */
   void DrawGameboardOutline() const;
+  /**
+   * Draws all the blocks that don't have value of 0
+   */
   void DrawBlocks();
+  /**
+   * Draws leaderboard after game is over or 'q' is clicked
+   */
   void DrawGameOver();
 };
 
