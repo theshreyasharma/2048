@@ -35,6 +35,7 @@ class MyApp : public cinder::app::App {
   int color_mode_;
   GameState state_;
   std::vector<Player> high_scores_;
+  cinder::Timer timer;
   /**
    * Print text function FROM SNAKE ASSIGNMENT
    * @param text - string with desired text to be printed

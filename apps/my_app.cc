@@ -33,6 +33,7 @@ MyApp::MyApp():
 void MyApp::setup() {
   gameboard.SetBoardSize();
   state_ = GameState::kPlaying;
+  timer.start();
   // Game begins with two blocks on the board
   gameboard.AddRandomBlock();
   gameboard.AddRandomBlock();
@@ -40,6 +41,7 @@ void MyApp::setup() {
 
 void MyApp::update() {
   if (state_ == GameState::kWinner || state_ == GameState::kLoser) {
+    timer.stop();
     state_ = GameState::kShowLeaderboard;
     if (high_scores_.empty()) {
       const size_t player_score_ = gameboard.score;
@@ -55,7 +57,7 @@ void MyApp::draw() {
   }
 
   if (state_ == GameState::kShowLeaderboard) {
-    cinder::gl::clear(Color(1,0,0));
+    cinder::gl::clear(Color(0,0,1));
     DrawGameOver();
     return;
   }
@@ -120,9 +122,10 @@ void MyApp::DrawBackground() const {
 
   cinder::gl::clear(Color(0.811, 0.847, 0.843));
   ci::vec2 size(500, 50);
-  ci::vec2 location(200, 70);
+  ci::vec2 location(150, 70);
   PrintText("Player: " + player_name_, size, location);
-  PrintText("Score: " + std::to_string(gameboard.score), size, {location.x + 400, location.y});
+  PrintText("Time " + std::to_string(timer.getSeconds()), size, {location.x + 250, location.y});
+  PrintText("Score: " + std::to_string(gameboard.score), size, {location.x + 500, location.y});
   PrintText("Welcome to 2048! Use the arrow keys to play!", {700, 50}, {400, 750});
 
 }
@@ -204,7 +207,8 @@ void MyApp::DrawGameOver() {
     PrintText("You: " + player_name_ + " - " + std::to_string(gameboard.score), size, {center.x, center.y + (++row) * 50});
   } else {
     PrintText("You lost!", size, {center.x, center.y + (++row) * 50});
-    PrintText("You: " + player_name_ + " - " + std::to_string(gameboard.score), size, {center.x, center.y + (++row) * 50});
+    PrintText("Your stats: " + player_name_ + " - " + std::to_string(gameboard.score)
+    + " - " + std::to_string(timer.getSeconds()) + " s", size, {center.x, center.y + (++row) * 50});
   }
 
 }
