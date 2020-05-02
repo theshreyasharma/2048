@@ -66,6 +66,12 @@
        
 - **4/29/20** - Added Project Proposal and dependencies to README.md
     - [ ] Dark mode palette and implementation
-    - [ ] Timer functionality
+    - [x] Timer functionality
     - [ ] Add Music
-    - [ ] Improve gameboard look       
+    - [ ] Improve gameboard look  
+         
+- **4/30/20** - Added timer functionality to game
+    - [ ] Dark mode palette and implementation
+    - [x] Timer functionality
+    - [ ] Add Music
+    - [ ] Improve gameboard look  

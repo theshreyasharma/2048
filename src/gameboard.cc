@@ -4,12 +4,9 @@
 
 #pragma once
 
-#include <mylibrary/gameboard.h>
 #include <cinder/Rand.h>
 
-#include "mylibrary/gameboard.h"
 #include "../include/mylibrary/gameboard.h"
-
 
 namespace mylibrary {
 
