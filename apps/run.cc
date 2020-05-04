@@ -4,8 +4,7 @@
 #include <cinder/app/RendererGl.h>
 #include <gflags/gflags.h>
 
-#include "my_app.h"
-
+#include "twentyfourtyeight.h"
 
 using cinder::app::App;
 using cinder::app::RendererGl;

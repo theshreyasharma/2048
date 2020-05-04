@@ -75,3 +75,9 @@
     - [x] Timer functionality
     - [ ] Add Music
     - [ ] Improve gameboard look  
+    
+- **5/04/20** - Fixed text printing and link in README.md
+    - Added gameboard outline to improve look
+    - Add instructions for downloading cinder to README.md
+    
+   

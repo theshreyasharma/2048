@@ -11,15 +11,21 @@ layout.
 #### The classic 2048 game recreated as a cinder app
 
 ## How to run the game
+##### Instructions for downloading are linked in the title, must add libraries and dependencies to CMake files
 ### Dependencies needed:
-1. [CLion](https://www.jetbrains.com/clion/)
-2. [Cinder Framework](http://libcinder.org/)
+1. [CLion](https://www.jetbrains.com/clion/) - The IDE used to run the game
+2. [Cinder Framework](http://libcinder.org/) - Graphics library
+3. [catch-2](https://github.com/catchorg/Catch2) - Testing framework for the game
 ### External Libraries needed: 
-1. [gflags](https://gflags.github.io/gflags/)
-2. [sqlite3](https://www.sqlite.org/capi3ref.html)
-3. [sqlite-modern-cpp](https://github.com/SqliteModernCpp/sqlite_modern_cpp)
-
-
+1. [gflags](https://gflags.github.io/gflags/) - Used to input the player's name in order to add it to the leaderboard
+2. [sqlite3](https://www.sqlite.org/capi3ref.html) - Used to add player name and score to database
+3. [sqlite-modern-cpp](https://github.com/SqliteModernCpp/sqlite_modern_cpp) - Wrapper library that makes SQL easy to use
+### Get started
+    Download Cinder (v0.9.2) for your MacOS or Windows. 
+    Extract the downloaded item into a folder called ~/Cinder
+    Open the ~/Cinder folder in CLion and build libcinder. You only need to do this once per machine.
+    Create a directory called my-projects in ~/Cinder. Clone this repository into this folder.
+    Open the 2048 project in CLion, set the target to cinder-myapp and click the run button.
 ## Game
 ### How to play
 The goal is to reach the 2048 tile by combining like tiles. Each turn, a new block with the value 2 appears in a random space. 

@@ -32,6 +32,9 @@ class MyApp : public cinder::app::App {
   const std::string player_name_;
   mylibrary::Leaderboard leaderboard;
   Gameboard gameboard;
+  /**
+   * 0 indicates light mode, 1 indicated dark mode
+   */
   int color_mode_;
   GameState state_;
   std::vector<Player> high_scores_;
@@ -43,7 +46,7 @@ class MyApp : public cinder::app::App {
    * @param loc - location of textbox
    */
   static void PrintText(const std::string& text, const cinder::ivec2& size,
-                        const cinder::vec2& loc);
+                        const cinder::vec2& loc, const int mode_);
   /**
    * Draws background that displays score and player name while also setting background color
    */

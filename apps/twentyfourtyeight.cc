@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "my_app.h"
+#include "twentyfourtyeight.h"
 
 #include <cinder/Vector.h>
 #include <cinder/app/App.h>
@@ -61,6 +61,7 @@ void MyApp::draw() {
     return;
   }
 
+  // If game is not over, show current board
   cinder::gl::clear();
   DrawBackground();
   DrawGameboardOutline();
@@ -122,32 +123,49 @@ void MyApp::DrawBackground() const {
   cinder::gl::clear(Color(0.831, 0.619, 0.780));
   ci::vec2 size(500, 50);
   ci::vec2 location(150, 70);
-  PrintText("Player: " + player_name_, size, location);
-  PrintText("Time: " + std::to_string(timer.getSeconds()).substr(0,5) + " s",
-      size, {location.x + 250, location.y});
-  PrintText("Score: " + std::to_string(gameboard.score), size, {location.x + 500, location.y});
-  PrintText("Welcome to 2048! Use the arrow keys to play!", {700, 50}, {400, 750});
+  PrintText("Player: " + player_name_, size, location, color_mode_);
+  PrintText("Time: " + std::to_string(timer.getSeconds()).substr(0,6) + " s",
+      size, {location.x + 250, location.y}, color_mode_);
+  PrintText("Score: " + std::to_string(gameboard.score), size, {location.x + 500, location.y}, color_mode_);
+  PrintText("Welcome to 2048! Use the arrow keys to play!", {700, 50}, {400, 750}, color_mode_);
 
 }
 
 void MyApp::PrintText(const std::string& text, const cinder::ivec2& size,
-                      const cinder::vec2& loc) {
+                      const cinder::vec2& loc, const int mode_) {
 
-  Color color(0.42f,0.48f,0.55f);
-  cinder::gl::color(color);
-  auto box = TextBox()
-      .alignment(TextBox::CENTER)
-      .font(cinder::Font("Arial", 30))
-      .size(size)
-      .color(color)
-      .backgroundColor(ColorA(0, 0, 0, 0))
-      .text(text);
+  // Light mode text box
+  if (mode_ == 0) {
+    Color color(0.42f, 0.48f, 0.55f);
+    auto box = TextBox()
+        .alignment(TextBox::CENTER)
+        .font(cinder::Font("Arial", 30))
+        .size(size)
+        .color(color)
+        .backgroundColor(ColorA(0, 0, 0, 0))
+        .text(text);
 
-  const auto box_size = box.getSize();
-  const cinder::vec2 locp = {loc.x - box_size.x / 2, loc.y - box_size.y / 2};
-  const auto surface = box.render();
-  const auto texture = cinder::gl::Texture::create(surface);
-  cinder::gl::draw(texture, locp);
+    const auto box_size = box.getSize();
+    const cinder::vec2 locp = {loc.x - box_size.x / 2, loc.y - box_size.y / 2};
+    const auto surface = box.render();
+    const auto texture = cinder::gl::Texture::create(surface);
+    cinder::gl::draw(texture, locp);
+  } else if (mode_ == 1) {
+    Color color(1, 0, 0);
+    auto box = TextBox()
+        .alignment(TextBox::CENTER)
+        .font(cinder::Font("Arial", 30))
+        .size(size)
+        .color(color)
+        .backgroundColor(ColorA(0, 0, 0, 0))
+        .text(text);
+
+    const auto box_size = box.getSize();
+    const cinder::vec2 locp = {loc.x - box_size.x / 2, loc.y - box_size.y / 2};
+    const auto surface = box.render();
+    const auto texture = cinder::gl::Texture::create(surface);
+    cinder::gl::draw(texture, locp);
+  }
 
 }
 
@@ -181,7 +199,7 @@ void MyApp::DrawBlocks() {
         cinder::gl::color(gameboard.board[row][col].GetColor(color_mode_));
         cinder::gl::drawSolidRect(Rectf(x_points[0], y_points[0], x_points[1], y_points[1]));
         ci::vec2 size(150, 150);
-        PrintText(std::to_string(gameboard.board[row][col].value), size, {x_points[0] + 70, y_points[1] - 20});
+        PrintText(std::to_string(gameboard.board[row][col].value), size, {x_points[0] + 70, y_points[1] - 20}, color_mode_);
 
       }
     }
@@ -191,25 +209,26 @@ void MyApp::DrawBlocks() {
 void MyApp::DrawGameOver() {
   cinder::gl::clear(Color(0.694, 0.305, 0.270));
   const cinder::vec2 center = getWindowCenter();
-  const cinder::ivec2 size = {500, 50};
+  const cinder::ivec2 size = {700, 50};
   size_t row = 0;
 
-  PrintText("Game Over", size, center);
+  PrintText("Game Over", size, center, color_mode_);
   for (const Player& player : high_scores_) {
     std::stringstream ss;
     ss << player.name << " - " << player.score;
-    PrintText(ss.str(), size, {center.x, center.y + (++row) * 50});
+    PrintText(ss.str(), size, {center.x, center.y + (++row) * 50}, color_mode_);
   }
 
   row += 2;
 
   if (gameboard.Contains2048Tile()) {
-    PrintText("You won!", size, {center.x, center.y + (++row) * 50});
-    PrintText("You: " + player_name_ + " - " + std::to_string(gameboard.score), size, {center.x, center.y + (++row) * 50});
+    PrintText("You won!", size, {center.x, center.y + (++row) * 50}, color_mode_);
+    PrintText("You: " + player_name_ + " - " + std::to_string(gameboard.score)
+        + " - " + std::to_string(timer.getSeconds()).substr(0,6), size, {center.x, center.y + (++row) * 50}, color_mode_);
   } else {
-    PrintText("You lost!", size, {center.x, center.y + (++row) * 50});
+    PrintText("You lost!", size, {center.x, center.y + (++row) * 50}, color_mode_);
     PrintText("Your stats: " + player_name_ + " - " + std::to_string(gameboard.score)
-    + " - " + std::to_string(timer.getSeconds()) + " s", size, {center.x, center.y + (++row) * 50});
+    + " - " + std::to_string(timer.getSeconds()).substr(0,6) + " s", size, {center.x, center.y + (++row) * 50}, color_mode_);
   }
 
 }
