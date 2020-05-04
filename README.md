@@ -29,7 +29,8 @@ Don't let the board fill up. Your score increases by the value of each combined 
 This game was originally created by a 19 year old named Gabriele Cirulli in 2014 and has been expanded to several 
 different platforms since then due to its extreme popularity.
 
-[Further Reading](https://en.wikipedia.org/wiki/2048_(video_game)
+[Further Reading](https://en.wikipedia.org/wiki/2048_(video_game))
+
 ### Controls
 #### Play
 Key|Action
