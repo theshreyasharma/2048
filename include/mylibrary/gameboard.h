@@ -75,7 +75,7 @@ namespace mylibrary {
     /**
      * Set the size of the board to kBoardSize and fill it with blocks with value 0
      */
-    void SetBoardSize();
+    void SetInitialBoard();
 
     /**
      * Board object, 2d vector of blocks

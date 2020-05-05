@@ -37,7 +37,7 @@ void MyApp::setup() {
   music_ = cinder::audio::Voice::create( sourceFile );
   music_->start();
   // Sets board to empty board
-  gameboard.SetBoardSize();
+  gameboard.SetInitialBoard();
   state_ = GameState::kPlaying;
   timer.start();
   // Game begins with two blocks on the board
@@ -195,13 +195,14 @@ void MyApp::DrawGameboardOutline() const {
   cinder::gl::color(0.42f,0.48f,0.55f);
   cinder::gl::drawStrokedRect(cinder::Rectf(ci::vec2{100,100}, ci::vec2{700,700}));
   // Horizontal lines
-  cinder::gl::drawLine(ci::vec2{100, 250}, ci::vec2{700, 250});
-  cinder::gl::drawLine(ci::vec2{100, 400}, ci::vec2{700, 400});
-  cinder::gl::drawLine(ci::vec2{100, 550}, ci::vec2{700, 550});
+  cinder::gl::drawLine(ci::vec2{kStartPixel, kStartPixel + kBlockSizePixel},
+      ci::vec2{kEndPixel, kStartPixel + kBlockSizePixel});
+  cinder::gl::drawLine(ci::vec2{kStartPixel, 400}, ci::vec2{kEndPixel, 400});
+  cinder::gl::drawLine(ci::vec2{kStartPixel, 550}, ci::vec2{kEndPixel, 550});
   // Vertical lines
-  cinder::gl::drawLine(ci::vec2{250, 100}, ci::vec2{250, 700});
-  cinder::gl::drawLine(ci::vec2{400, 100}, ci::vec2{400, 700});
-  cinder::gl::drawLine(ci::vec2{550, 100}, ci::vec2{550, 700});
+  cinder::gl::drawLine(ci::vec2{250, kStartPixel}, ci::vec2{250, kEndPixel});
+  cinder::gl::drawLine(ci::vec2{400, kStartPixel}, ci::vec2{400, kEndPixel});
+  cinder::gl::drawLine(ci::vec2{550, kStartPixel}, ci::vec2{550, kEndPixel});
 
 }
 void MyApp::DrawBlocks() {

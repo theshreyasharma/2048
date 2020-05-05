@@ -31,6 +31,10 @@ class MyApp : public cinder::app::App {
   static const int kLightMode = 0;
   static const int kDarkMode = 1;
 
+  const int kStartPixel = 100;
+  const int kEndPixel = 700;
+  const int kBlockSizePixel = 150;
+
  private:
   const std::string player_name_;
   mylibrary::Leaderboard leaderboard;

@@ -32,7 +32,7 @@
     - Implemented functions that draw the block objects
     - Added some functions to header
     - [x] Implement game logic
-    - [ ] Decide on dark mode palette
+    - [x] Decide on dark mode palette
     
 - **4/24/20** - Began implementing game logic
     - Created adding new tile function and find empty tile functions
@@ -53,7 +53,7 @@
     - Implemented operator overload for == to check whether a valid move was made
     - Did half of the game over logic, have to add to leaderboard now
     - [x] Add to leaderboard when game is over
-    - [ ] Dark mode palette
+    - [x] Dark mode palette
     - [x] Add more tests
     - [x] Add timer functionality and music
     - [x] Update README.md with proper formatting
@@ -65,13 +65,13 @@
     - Updated README.md
        
 - **4/29/20** - Added Project Proposal and dependencies to README.md
-    - [ ] Dark mode palette and implementation
+    - [x] Dark mode palette and implementation
     - [x] Timer functionality
     - [x] Add Music
     - [x] Improve gameboard look  
          
 - **4/30/20** - Added timer functionality to game
-    - [ ] Dark mode palette and implementation
+    - [x] Dark mode palette and implementation
     - [x] Timer functionality
     - [x] Add Music
     - [x] Improve gameboard look  
@@ -83,11 +83,13 @@
         - Ran into lots of issues with dark mode
     - Added music to background and also when a successful move was made
     - [x] Add music
-    - [ ] Dark mode palette
+    - [x] Dark mode palette
     
 - **5/05/20** - Refactored code
     - Added comments
     - Fixed dark mode bug
-    - [ ] Dark Mode Palette
-    - [ ] Add screenshot to README.md
+    - Added dark mode palette
+    - Added gameplay screenshots to README.md
+    - [x] Dark Mode Palette
+    - [x] Add screenshot to README.md
    

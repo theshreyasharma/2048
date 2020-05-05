@@ -10,6 +10,15 @@ layout.
 
 #### The classic 2048 game recreated as a cinder app
 
+Light Theme
+![](images/lightstart.png)
+
+![](images/lightgameplay.png)
+Dark theme
+![](images/darkstart.png)
+
+![](images/darkgameplay.png)
+
 ## How to run the game
 ##### Instructions for downloading are linked in the title, must add libraries and dependencies to CMake files
 ### Dependencies needed:

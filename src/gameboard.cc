@@ -13,14 +13,17 @@ namespace mylibrary {
     mylibrary::Gameboard::Gameboard() : board{},
     score{0} {}
 
-    void mylibrary::Gameboard::SetBoardSize() {
+    void mylibrary::Gameboard::SetInitialBoard() {
+
       board.resize(kBoardSize);
       for (int i = 0; i < board.size(); i++) {
         board[i].resize(kBoardSize);
         for (int j = 0; j < kBoardSize; j++) {
+          // Set each value in the 4x4 board to 0
           board[i][j] = Block(0, i, j);
         }
       }
+
     }
 
     std::vector<int> mylibrary::Gameboard::GetRandomEmptyPosition() {
