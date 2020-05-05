@@ -6,6 +6,7 @@
 #include <cinder/app/App.h>
 #include <mylibrary/database.h>
 #include <mylibrary/gameboard.h>
+#include <cinder/audio/Voice.h>
 
 
 namespace myapp {
@@ -39,6 +40,7 @@ class MyApp : public cinder::app::App {
   GameState state_;
   std::vector<Player> high_scores_;
   cinder::Timer timer;
+  ci::audio::VoiceRef music_;
   /**
    * Print text function FROM SNAKE ASSIGNMENT
    * @param text - string with desired text to be printed

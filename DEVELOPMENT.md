@@ -55,9 +55,9 @@
     - [x] Add to leaderboard when game is over
     - [ ] Dark mode palette
     - [x] Add more tests
-    - [ ] Add timer functionality and music
+    - [x] Add timer functionality and music
     - [x] Update README.md with proper formatting
-    - [ ] Make gameboard look better
+    - [x] Make gameboard look better
     
 - **4/28/20** - Finished tests for gameboard and block classes
     - Add scores to leaderboard when game is over
@@ -67,17 +67,20 @@
 - **4/29/20** - Added Project Proposal and dependencies to README.md
     - [ ] Dark mode palette and implementation
     - [x] Timer functionality
-    - [ ] Add Music
-    - [ ] Improve gameboard look  
+    - [x] Add Music
+    - [x] Improve gameboard look  
          
 - **4/30/20** - Added timer functionality to game
     - [ ] Dark mode palette and implementation
     - [x] Timer functionality
-    - [ ] Add Music
-    - [ ] Improve gameboard look  
+    - [x] Add Music
+    - [x] Improve gameboard look  
     
 - **5/04/20** - Fixed text printing and link in README.md
     - Added gameboard outline to improve look
     - Add instructions for downloading cinder to README.md
-    
+    - Adding dark mode palette and implementing it
+        - Ran into lots of issues with dark mode
+    - Added music
+    - [x] Add music
    
