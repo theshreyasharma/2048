@@ -83,4 +83,11 @@
         - Ran into lots of issues with dark mode
     - Added music to background and also when a successful move was made
     - [x] Add music
+    - [ ] Dark mode palette
+    
+- **5/05/20** - Refactored code
+    - Added comments
+    - Fixed dark mode bug
+    - [ ] Dark Mode Palette
+    - [ ] Add screenshot to README.md
    

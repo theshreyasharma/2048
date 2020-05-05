@@ -28,7 +28,7 @@ MyApp::MyApp():
     player_name_{FLAGS_name},
     leaderboard{cinder::app::getAssetPath("twentyfourtyeight.db").string()},
     gameboard{},
-    color_mode_{0},
+    color_mode_{kLightMode},
     state_{} {}
 
 void MyApp::setup() {
@@ -46,6 +46,7 @@ void MyApp::setup() {
 }
 
 void MyApp::update() {
+  // If game is over, add stats to leaderboard
   if (state_ == GameState::kWinner || state_ == GameState::kLoser) {
     timer.stop();
     state_ = GameState::kShowLeaderboard;
@@ -56,12 +57,14 @@ void MyApp::update() {
     }
   }
 
+  // Loop the music
   if (!music_->isPlaying()) {
     music_->start();
   }
 }
 
 void MyApp::draw() {
+  // Check for game over
   if (gameboard.Contains2048Tile()) {
     state_ = GameState::kWinner;
   }
@@ -79,7 +82,10 @@ void MyApp::draw() {
 
 
 void MyApp::keyDown(KeyEvent event) {
+
+  // Copy of gameboard to check whether a move was made
   Gameboard copy_ = gameboard;
+
   if (event.getCode() == KeyEvent::KEY_UP) {
     gameboard.MoveUp();
     // If board is still full after move is made and before
@@ -116,12 +122,12 @@ void MyApp::keyDown(KeyEvent event) {
       gameboard.AddRandomBlock();
     }
   } else if (event.getCode() == KeyEvent::KEY_m) {
-    if (color_mode_ == 0) {
+    if (color_mode_ == kLightMode) {
       // Set to dark mode
-      color_mode_ = 1;
+      color_mode_ = kDarkMode;
     } else {
       // Set to light mode
-      color_mode_ = 0;
+      color_mode_ = kLightMode;
     }
   } else if (event.getCode() == KeyEvent::KEY_q) {
     state_ = GameState::kLoser;
@@ -137,9 +143,9 @@ void MyApp::keyDown(KeyEvent event) {
 
 void MyApp::DrawBackground() const {
 
-  if (color_mode_ == 0) {
+  if (color_mode_ == kLightMode) {
     cinder::gl::clear(Color(0.831, 0.619, 0.780));
-  } else if (color_mode_ == 1) {
+  } else if (color_mode_ == kDarkMode) {
     cinder::gl::clear(Color(0.20784f, 0.22353f, 0.25490f));
   }
   ci::vec2 size(500, 50);
@@ -154,40 +160,30 @@ void MyApp::DrawBackground() const {
 
 void MyApp::PrintText(const std::string& text, const cinder::ivec2& size,
                       const cinder::vec2& loc, const int mode_) {
-  // 0.42f, 0.48f, 0.55f
-  // 0.97647f, 0.97647f, 0.97647f
-  // Light mode text box
-  if (mode_ == 0) {
-    Color light(.999, 0.999, 0.999);
-    auto box = TextBox()
-        .alignment(TextBox::CENTER)
-        .font(cinder::Font("Arial", 30))
-        .size(size)
-        .color(Color{0.42f, 0.48f, 0.55f})
-        .backgroundColor(ColorA(0, 0, 0, 0))
-        .text(text);
 
-    const auto box_size = box.getSize();
-    const cinder::vec2 locp = {loc.x - box_size.x / 2, loc.y - box_size.y / 2};
-    const auto surface = box.render();
-    const auto texture = cinder::gl::Texture::create(surface);
-    cinder::gl::draw(texture, locp);
-  } else {
-    Color dark(.213,.123,.123);
-    auto box1 = TextBox()
-        .alignment(TextBox::CENTER)
-        .font(cinder::Font("Arial", 30))
-        .size(size)
-        .color(dark)
-        .backgroundColor(ColorA(0, 0, 0, 0))
-        .text(text);
-
-    const auto box_size1 = box1.getSize();
-    const cinder::vec2 locp1 = {loc.x - box_size1.x / 2, loc.y - box_size1.y / 2};
-    const auto surface1 = box1.render();
-    const auto texture1 = cinder::gl::Texture::create(surface1);
-    cinder::gl::draw(texture1, locp1);
+  Color color;
+  if (mode_ == kLightMode) {
+    Color light{0.42f, 0.48f, 0.55f};
+    color = light;
+  } else if (mode_ == kDarkMode) {
+    Color dark{.999,.999,.999};
+    color = dark;
   }
+
+  cinder::gl::color(color);
+  auto box = TextBox()
+      .alignment(TextBox::CENTER)
+      .font(cinder::Font("Arial", 30))
+      .size(size)
+      .color(color)
+      .backgroundColor(ColorA(0, 0, 0, 0))
+      .text(text);
+
+  const auto box_size = box.getSize();
+  const cinder::vec2 locp = {loc.x - box_size.x / 2, loc.y - box_size.y / 2};
+  const auto surface = box.render();
+  const auto texture = cinder::gl::Texture::create(surface);
+  cinder::gl::draw(texture, locp);
 
 }
 

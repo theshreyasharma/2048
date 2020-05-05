@@ -7,6 +7,10 @@
 
 #include <cinder/Color.h>
 namespace mylibrary {
+
+  static const int kLightMode = 0;
+  static const int kDarkMode = 1;
+
   class Block {
    public:
     Block();
@@ -17,6 +21,10 @@ namespace mylibrary {
      * @return - Color object
      */
     cinder::Color GetColor(int mode_);
+    /**
+     * Sets the value of the block
+     * @param set_value - value to set to
+     */
     void SetValue(int set_value);
     /**
      * Value of the block, 2 to some power

@@ -28,6 +28,8 @@ class MyApp : public cinder::app::App {
   void draw() override;
   void keyDown(cinder::app::KeyEvent) override;
 
+  static const int kLightMode = 0;
+  static const int kDarkMode = 1;
 
  private:
   const std::string player_name_;

@@ -7,7 +7,6 @@
 #include "mylibrary/block.h"
 #include "../include/mylibrary/block.h"
 
-
 namespace mylibrary {
 
 mylibrary::Block::Block() : value{0} {}
@@ -21,7 +20,7 @@ void Block::SetValue(int set_value) {
   value = set_value;
 }
 cinder::Color Block::GetColor(int mode_) {
-  if (mode_ == 0) {
+  if (mode_ == kLightMode) {
     if (value == 2048) {return cinder::Color(0.737, 0.956, 0.870);}
     else if (value == 1024) {return cinder::Color(0.803, 0.898, 0.843);}
     else if (value == 512) {return cinder::Color(0.870, 0.839, 0.819);}
@@ -33,8 +32,7 @@ cinder::Color Block::GetColor(int mode_) {
     else if (value == 8) {return cinder::Color(0.866, 0.733, 0.886);}
     else if (value == 4) {return cinder::Color(0.827, 0.713, 0.854);}
     else if (value == 2) {return cinder::Color(0.749, 0.670, 0.796);}
-    else {return cinder::Color(.5,.5,.5);}
-  } else if (mode_ == 1) {
+  } else if (mode_ == kDarkMode) {
     if (value == 2048) {return cinder::Color(0.737, 0.956, 0.870);}
     else if (value == 1024) {return cinder::Color(0.803, 0.898, 0.843);}
     else if (value == 512) {return cinder::Color(0.870, 0.839, 0.819);}
