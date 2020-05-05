@@ -81,6 +81,6 @@
     - Add instructions for downloading cinder to README.md
     - Adding dark mode palette and implementing it
         - Ran into lots of issues with dark mode
-    - Added music
+    - Added music to background and also when a successful move was made
     - [x] Add music
    

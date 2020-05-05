@@ -127,6 +127,12 @@ void MyApp::keyDown(KeyEvent event) {
     state_ = GameState::kLoser;
   }
 
+  if (!(copy_ == gameboard)) {
+    ci::audio::SourceFileRef moveSource = ci::audio::load(ci::app::loadAsset("blip.wav"));
+    move_music_ = ci::audio::Voice::create(moveSource);
+    move_music_->start();
+  }
+
 }
 
 void MyApp::DrawBackground() const {

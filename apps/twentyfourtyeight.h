@@ -41,6 +41,7 @@ class MyApp : public cinder::app::App {
   std::vector<Player> high_scores_;
   cinder::Timer timer;
   ci::audio::VoiceRef music_;
+  ci::audio::VoiceRef move_music_;
   /**
    * Print text function FROM SNAKE ASSIGNMENT
    * @param text - string with desired text to be printed
