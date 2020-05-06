@@ -9,6 +9,9 @@
 
 namespace mylibrary {
 
+static const int kLightMode = 0;
+static const int kDarkMode = 1;
+
 mylibrary::Block::Block() : value{0} {}
 
 mylibrary::Block::Block(int set_value_, int set_row, int set_col) {
@@ -22,6 +25,7 @@ void Block::SetValue(int set_value) {
 }
 
 cinder::Color Block::GetColor(int mode_) {
+
   if (mode_ == kLightMode) {
 
     if (value == 2048) {return cinder::Color(0.737, 0.956, 0.870);}
@@ -51,6 +55,7 @@ cinder::Color Block::GetColor(int mode_) {
     else if (value == 2) {return cinder::Color(0.08627f, 0.14118f, 0.27843f);}
 
   }
+
 }
 
 } //namespace mylibrary

@@ -15,14 +15,10 @@ namespace mylibrary {
    public:
     Gameboard();
 
-    /**
-     * Default height and width of a 2048 board is 4 high by 4 wide
-     */
+    // Default height and width of a 2048 board is 4 high by 4 wide
     const int kBoardSize = 4;
 
-    /**
-     * Player score, updated as moves are made
-     */
+    // Player score, updated as moves are made
     int score;
 
     /**
@@ -72,14 +68,11 @@ namespace mylibrary {
      * @return - a vector of ints, beginning pixel in the first index, ending pixel in the second index
      */
     std::vector<int> GetColumnPixelVal(int col_) const;
-    /**
-     * Set the size of the board to kBoardSize and fill it with blocks with value 0
-     */
+
+    // Set the size of the board to kBoardSize and fill it with blocks with value 0
     void SetInitialBoard();
 
-    /**
-     * Board object, 2d vector of blocks
-     */
+    // Board object, 2d vector of blocks
     std::vector<std::vector<mylibrary::Block>> board;
   };
 

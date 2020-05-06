@@ -9,7 +9,7 @@
 namespace mylibrary {
 
   /**
-   * All database code and Player struct from SNAKE ASSIGNMENT
+   * All database code and Player struct adapted from SNAKE ASSIGNMENT
    */
 
   struct Player {
@@ -21,8 +21,8 @@ namespace mylibrary {
   class Leaderboard {
    public:
     explicit Leaderboard(const std::string& database_path);
-    void AddScore(const Player player);
-    std::vector<Player> RetrieveHighScores(const size_t limit);
+    void AddScore(const Player& player);
+    std::vector<Player> RetrieveHighScores(size_t limit);
 
    private:
     sqlite::database database;

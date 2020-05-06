@@ -8,9 +8,6 @@
 #include <cinder/Color.h>
 namespace mylibrary {
 
-  static const int kLightMode = 0;
-  static const int kDarkMode = 1;
-
   class Block {
    public:
     Block();
@@ -26,19 +23,13 @@ namespace mylibrary {
      * @param set_value - value to set to
      */
     void SetValue(int set_value);
-    /**
-     * Value of the block, 2 to some power
-     */
+     // Value of the block, 2 to some power
     int value;
 
    private:
-    /**
-     * Row that block resides in
-     */
+    // Row that block resides in
     int row;
-    /**
-     * Column that the block resides in
-     */
+    // Column that the block resides in
     int col;
   };
 }

@@ -27,6 +27,7 @@ namespace mylibrary {
     }
 
     std::vector<int> mylibrary::Gameboard::GetRandomEmptyPosition() {
+
       std::vector<int> empty_position;
 
       for (int i = 0; i < kBoardSize*kBoardSize; i++) {
@@ -221,11 +222,9 @@ namespace mylibrary {
 
       for (int i = 0; i < kBoardSize; i++) {
         for (int j = 0; j < kBoardSize; j++) {
-
           if (board[i][j].value == 2048) {
             return true;
           }
-
         }
       }
 

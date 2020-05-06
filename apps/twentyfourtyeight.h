@@ -30,47 +30,39 @@ class MyApp : public cinder::app::App {
 
   static const int kLightMode = 0;
   static const int kDarkMode = 1;
-
   const int kStartPixel = 100;
   const int kEndPixel = 700;
   const int kBlockSizePixel = 150;
+  const int kLeaderboardLimit = 3;
 
  private:
   const std::string player_name_;
   mylibrary::Leaderboard leaderboard;
   Gameboard gameboard;
-  /**
-   * 0 indicates light mode, 1 indicated dark mode
-   */
   int color_mode_;
   GameState state_;
   std::vector<Player> high_scores_;
   cinder::Timer timer;
   ci::audio::VoiceRef music_;
   ci::audio::VoiceRef move_music_;
+
   /**
    * Print text function FROM SNAKE ASSIGNMENT
    * @param text - string with desired text to be printed
    * @param size - size of textbox
    * @param loc - location of textbox
+   * @param mode_ - color mode
    */
   static void PrintText(const std::string& text, const cinder::ivec2& size,
-                        const cinder::vec2& loc, const int mode_);
-  /**
-   * Draws background that displays score and player name while also setting background color
-   */
+                        const cinder::vec2& loc, int mode_);
+
+  // Draws background that displays score and player name while also setting background color
   void DrawBackground() const;
-  /**
-   * Draws the gameboard outline, which is a 600x600 pixel square split into 4x4
-   */
+  // Draws the gameboard outline, which is a 600x600 pixel square split into 4x4
   void DrawGameboardOutline() const;
-  /**
-   * Draws all the blocks that don't have value of 0
-   */
+  // Draws all the blocks that don't have value of 0
   void DrawBlocks();
-  /**
-   * Draws leaderboard after game is over or 'q' is clicked
-   */
+  // Draws leaderboard after game is over or 'q' is clicked
   void DrawGameOver();
 };
 

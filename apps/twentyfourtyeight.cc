@@ -33,8 +33,8 @@ MyApp::MyApp():
 
 void MyApp::setup() {
   cinder::audio::SourceFileRef sourceFile =
-      cinder::audio::load( cinder::app::loadAsset( "background.wav" ) );
-  music_ = cinder::audio::Voice::create( sourceFile );
+      cinder::audio::load( cinder::app::loadAsset("background.wav"));
+  music_ = cinder::audio::Voice::create(sourceFile);
   music_->start();
   // Sets board to empty board
   gameboard.SetInitialBoard();
@@ -53,11 +53,11 @@ void MyApp::update() {
     if (high_scores_.empty()) {
       const size_t player_score_ = gameboard.score;
       leaderboard.AddScore({player_name_, player_score_});
-      high_scores_ = leaderboard.RetrieveHighScores(3);
+      high_scores_ = leaderboard.RetrieveHighScores(kLeaderboardLimit);
     }
   }
 
-  // Loop the music
+  // Loops the music
   if (!music_->isPlaying()) {
     music_->start();
   }
@@ -86,42 +86,25 @@ void MyApp::keyDown(KeyEvent event) {
   // Copy of gameboard to check whether a move was made
   Gameboard copy_ = gameboard;
 
+  // Shift the board in the direction of the key press
   if (event.getCode() == KeyEvent::KEY_UP) {
+
     gameboard.MoveUp();
-    // If board is still full after move is made and before
-    // tile is added, game is over
-    if (gameboard.GetRandomEmptyPosition().empty()
-          && !gameboard.Contains2048Tile()) {
-      state_ = GameState::kLoser;
-    } else if (!(gameboard == copy_)) {
-      // Don't add block if copy of board is the same
-      gameboard.AddRandomBlock();
-    }
+
   } else if (event.getCode() == KeyEvent::KEY_DOWN) {
+
     gameboard.MoveDown();
-    if (gameboard.GetRandomEmptyPosition().empty()
-        && !gameboard.Contains2048Tile()) {
-      state_ = GameState::kLoser;
-    } else if (!(gameboard == copy_)) {
-      gameboard.AddRandomBlock();
-    }
+
   } else if (event.getCode() == KeyEvent::KEY_RIGHT) {
+
     gameboard.MoveRight();
-    if (gameboard.GetRandomEmptyPosition().empty()
-        && !gameboard.Contains2048Tile()) {
-      state_ = GameState::kLoser;
-    } else if (!(gameboard == copy_)) {
-      gameboard.AddRandomBlock();
-    }
+
   } else if (event.getCode() == KeyEvent::KEY_LEFT) {
+
     gameboard.MoveLeft();
-    if (gameboard.GetRandomEmptyPosition().empty()
-        && !gameboard.Contains2048Tile()) {
-      state_ = GameState::kLoser;
-    } else if (!(gameboard == copy_)) {
-      gameboard.AddRandomBlock();
-    }
+
   } else if (event.getCode() == KeyEvent::KEY_m) {
+
     if (color_mode_ == kLightMode) {
       // Set to dark mode
       color_mode_ = kDarkMode;
@@ -129,11 +112,22 @@ void MyApp::keyDown(KeyEvent event) {
       // Set to light mode
       color_mode_ = kLightMode;
     }
+
   } else if (event.getCode() == KeyEvent::KEY_q) {
+
     state_ = GameState::kLoser;
+
   }
 
-  if (!(copy_ == gameboard)) {
+  // If board is still full after move is made and before
+  // tile is added, game is over
+  if (gameboard.GetRandomEmptyPosition().empty()
+      && !gameboard.Contains2048Tile()) {
+    state_ = GameState::kLoser;
+  } else if (!(copy_ == gameboard)) {
+    // Don't add block if copy of board is the same
+    gameboard.AddRandomBlock();
+    // If successful move was made, play noise
     ci::audio::SourceFileRef moveSource = ci::audio::load(ci::app::loadAsset("blip.wav"));
     move_music_ = ci::audio::Voice::create(moveSource);
     move_music_->start();
@@ -143,6 +137,7 @@ void MyApp::keyDown(KeyEvent event) {
 
 void MyApp::DrawBackground() const {
 
+  // Change background color based on color mode
   if (color_mode_ == kLightMode) {
     cinder::gl::clear(Color(0.831, 0.619, 0.780));
   } else if (color_mode_ == kDarkMode) {
@@ -159,7 +154,7 @@ void MyApp::DrawBackground() const {
 }
 
 void MyApp::PrintText(const std::string& text, const cinder::ivec2& size,
-                      const cinder::vec2& loc, const int mode_) {
+                      const cinder::vec2& loc, int mode_) {
 
   Color color;
   if (mode_ == kLightMode) {
@@ -189,20 +184,28 @@ void MyApp::PrintText(const std::string& text, const cinder::ivec2& size,
 
 void MyApp::DrawGameboardOutline() const {
   cinder::gl::color(0.992, 0.925, 0.937);
-  cinder::gl::drawSolidRect(cinder::Rectf(ci::vec2{95,95}, ci::vec2{705,705}));
+  cinder::gl::drawSolidRect(cinder::Rectf(ci::vec2{kStartPixel - 5,kStartPixel - 5},
+      ci::vec2{kEndPixel + 5,kEndPixel + 5}));
   //y = 100 to y = 700
   //x = 100 to x = 700
   cinder::gl::color(0.42f,0.48f,0.55f);
-  cinder::gl::drawStrokedRect(cinder::Rectf(ci::vec2{100,100}, ci::vec2{700,700}));
+  cinder::gl::drawStrokedRect(cinder::Rectf(ci::vec2{kStartPixel,kStartPixel}, ci::vec2{kEndPixel,kEndPixel}));
+
   // Horizontal lines
-  cinder::gl::drawLine(ci::vec2{kStartPixel, kStartPixel + kBlockSizePixel},
-      ci::vec2{kEndPixel, kStartPixel + kBlockSizePixel});
-  cinder::gl::drawLine(ci::vec2{kStartPixel, 400}, ci::vec2{kEndPixel, 400});
-  cinder::gl::drawLine(ci::vec2{kStartPixel, 550}, ci::vec2{kEndPixel, 550});
+  cinder::gl::drawLine(ci::vec2{kStartPixel, kStartPixel + 1*kBlockSizePixel},
+      ci::vec2{kEndPixel, kStartPixel + 1*kBlockSizePixel});
+  cinder::gl::drawLine(ci::vec2{kStartPixel, kStartPixel + 2*kBlockSizePixel},
+      ci::vec2{kEndPixel, kStartPixel + 2*kBlockSizePixel});
+  cinder::gl::drawLine(ci::vec2{kStartPixel, kStartPixel + 3*kBlockSizePixel},
+      ci::vec2{kEndPixel, kStartPixel + 3*kBlockSizePixel});
+
   // Vertical lines
-  cinder::gl::drawLine(ci::vec2{250, kStartPixel}, ci::vec2{250, kEndPixel});
-  cinder::gl::drawLine(ci::vec2{400, kStartPixel}, ci::vec2{400, kEndPixel});
-  cinder::gl::drawLine(ci::vec2{550, kStartPixel}, ci::vec2{550, kEndPixel});
+  cinder::gl::drawLine(ci::vec2{kStartPixel + 1*kBlockSizePixel, kStartPixel},
+      ci::vec2{kStartPixel + 1*kBlockSizePixel, kEndPixel});
+  cinder::gl::drawLine(ci::vec2{kStartPixel + 2*kBlockSizePixel, kStartPixel},
+      ci::vec2{kStartPixel + 2*kBlockSizePixel, kEndPixel});
+  cinder::gl::drawLine(ci::vec2{kStartPixel + 3*kBlockSizePixel, kStartPixel},
+      ci::vec2{kStartPixel + 3*kBlockSizePixel, kEndPixel});
 
 }
 void MyApp::DrawBlocks() {
@@ -227,6 +230,7 @@ void MyApp::DrawBlocks() {
 
 }
 void MyApp::DrawGameOver() {
+
   cinder::gl::clear(Color(0.694, 0.305, 0.270));
   const cinder::vec2 start = {getWindowCenter().x, getWindowCenter().y - 300};
   const cinder::ivec2 size = {700, 50};

@@ -13,7 +13,7 @@ namespace mylibrary {
            ");";
   }
 
-  void Leaderboard::AddScore(const Player player) {
+  void Leaderboard::AddScore(const Player& player) {
     database << "INSERT INTO twentyfourtyeight (name, score) VALUES (?,?);"
              << player.name
              << player.score;
@@ -33,7 +33,7 @@ namespace mylibrary {
     return players;
   }
 
-  std::vector<Player> Leaderboard::RetrieveHighScores(const size_t limit) {
+  std::vector<Player> Leaderboard::RetrieveHighScores(size_t limit) {
     auto rows = database << "SELECT name, score "
                        "FROM twentyfourtyeight "
                        "ORDER BY score DESC "
